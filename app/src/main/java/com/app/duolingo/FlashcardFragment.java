@@ -39,7 +39,7 @@ public class FlashcardFragment extends Fragment {
     private ViewPager2 viewPagerWords;
     private FlashcardAdapter flashcardAdapter;
     private Button btnNext;
-    private List<Word> wordList; // This should be populated with the words for the course
+    private List<Word> wordList;
 
     public FlashcardFragment() {
         // Required empty public constructor
