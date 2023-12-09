@@ -1,0 +1,18 @@
+<com.wajahatkarim3.easyflipview.EasyFlipView
+    android:id="@+id/flipView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:flipOnTouch="false"
+    app:flipEnabled="true"
+    app:flipDuration="400"
+    app:flipType="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Front of the Card -->
+    <include layout="@layout/flashcard_back" />
+
+    <!-- Back of the Card -->
+    <include layout="@layout/flashcard_front" />
+
+</com.wajahatkarim3.easyflipview.EasyFlipView>

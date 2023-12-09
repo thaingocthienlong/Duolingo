@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1073482289966",
+    "project_id": "duolingo-cb87b",
+    "storage_bucket": "duolingo-cb87b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073482289966:android:8f567412ed3dacc3c1a0bf",
+        "android_client_info": {
+          "package_name": "com.app.duolingo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0ZyduJ6KgwE2zzQv7TDNJqnDkTc-3QrI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
