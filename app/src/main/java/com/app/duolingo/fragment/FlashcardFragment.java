@@ -7,11 +7,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.duolingo.HomeFragment;
@@ -28,8 +31,12 @@ import java.util.List;
 public class FlashcardFragment extends Fragment {
 
     private ViewPager2 viewPagerWords;
+    private Handler autoPlayHandler = new Handler();
+    private Runnable autoPlayRunnable;
+    private boolean isAutoPlayActive = false;
     private FlashcardAdapter flashcardAdapter;
     private Button btnNext, btnPrevious;
+    private ImageButton btnAutoPlay;
     private String progressRecordRefId, userId;
     private FirebaseAuth auth;
     private DatabaseService databaseService;
@@ -49,6 +56,7 @@ public class FlashcardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_flashcard, container, false);
+        btnAutoPlay = view.findViewById(R.id.btnAutoPlay);
         viewPagerWords = view.findViewById(R.id.viewPagerWords);
         btnNext = view.findViewById(R.id.btnNext);
         btnPrevious = view.findViewById(R.id.btnPrevious);
@@ -115,6 +123,7 @@ public class FlashcardFragment extends Fragment {
                     });
                 }
             } else {
+                viewPagerWords.setCurrentItem(0);
                 databaseService.updateLearnProgress(progressRecordRefId, 100, new DatabaseService.Callback<Void>() {
                     @Override
                     public void onResult(Void result) {}
@@ -124,12 +133,6 @@ public class FlashcardFragment extends Fragment {
                         Toast.makeText(getActivity(), "Error updating progress", Toast.LENGTH_SHORT).show();
                     }
                 });
-                HomeFragment homeFragment = new HomeFragment();
-                FragmentManager fragmentManager = getParentFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.frame_layout, homeFragment);
-                transaction.addToBackStack(this.getClass().getName());
-                transaction.commit();
             }
         });
         btnPrevious.setOnClickListener(v -> {
@@ -139,7 +142,56 @@ public class FlashcardFragment extends Fragment {
             }
         });
 
+        btnAutoPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isAutoPlayActive) {
+                    stopAutoPlay();
+                    btnAutoPlay.setImageResource(R.drawable.baseline_play_arrow_24); // Replace with your play icon resource
+                } else {
+                    startAutoPlay();
+                    btnAutoPlay.setImageResource(R.drawable.baseline_pause_24); // Replace with your stop icon resource
+                }
+                isAutoPlayActive = !isAutoPlayActive;
+            }
+        });
+
+        autoPlayRunnable = new Runnable() {
+            @Override
+            public void run() {
+                if (viewPagerWords != null) {
+                    int currentItem = viewPagerWords.getCurrentItem();
+                    int nextItem = currentItem + 1;
+                    if (nextItem >= flashcardAdapter.getItemCount()) {
+                        nextItem = 0;
+                    }
+                    viewPagerWords.setCurrentItem(nextItem, true);
+
+                    if (isAutoPlayActive) {
+                        autoPlayHandler.postDelayed(this, 3000);
+                    }
+                }
+            }
+        };
+
         return view;
     }
+
+    private void startAutoPlay() {
+        Toast.makeText(getActivity(), "Auto play started", Toast.LENGTH_SHORT).show();
+        autoPlayHandler.postDelayed(autoPlayRunnable, 5000);
+    }
+
+    private void stopAutoPlay() {
+        Toast.makeText(getActivity(), "Auto play stopped", Toast.LENGTH_SHORT).show();
+        autoPlayHandler.removeCallbacks(autoPlayRunnable);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        stopAutoPlay(); // Important to avoid memory leaks
+    }
+
 
 }
