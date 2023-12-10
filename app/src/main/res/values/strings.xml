@@ -28,6 +28,6 @@
         It has been created to make possible construction of any lists with XML layouts as an item
         which can be customized vastly while improving on the efficiency of ListViews and GridViews.
     </string>
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.appcompat.widget.SearchView;
 
 import com.app.duolingo.adapter.CoursesAdapter;
+import com.app.duolingo.fragment.FlashcardFragment;
 import com.app.duolingo.models.Course;
 import com.app.duolingo.models.CoursesViewModel;
 import com.app.duolingo.models.Progress;
