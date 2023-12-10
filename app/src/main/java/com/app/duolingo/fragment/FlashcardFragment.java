@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.app.duolingo.HomeFragment;
 import com.app.duolingo.R;
 import com.app.duolingo.adapter.FlashcardAdapter;
 import com.app.duolingo.models.Word;
@@ -123,13 +124,10 @@ public class FlashcardFragment extends Fragment {
                         Toast.makeText(getActivity(), "Error updating progress", Toast.LENGTH_SHORT).show();
                     }
                 });
-                PracticeFragment practiceFragment = new PracticeFragment();
-                Bundle args = new Bundle();
-                args.putString("COURSE_KEY", courseId);
-                practiceFragment.setArguments(args);
+                HomeFragment homeFragment = new HomeFragment();
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.frame_layout, practiceFragment);
+                transaction.replace(R.id.frame_layout, homeFragment);
                 transaction.addToBackStack(this.getClass().getName());
                 transaction.commit();
             }

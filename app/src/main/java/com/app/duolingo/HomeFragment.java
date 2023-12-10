@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.app.duolingo.adapter.CoursesAdapter;
 import com.app.duolingo.fragment.FlashcardFragment;
+import com.app.duolingo.fragment.ModeFragment;
 import com.app.duolingo.models.Course;
 import com.app.duolingo.models.CoursesViewModel;
 import com.app.duolingo.models.Progress;
@@ -32,13 +33,6 @@ public class HomeFragment extends Fragment {
 
     public HomeFragment() {
         // Required empty public constructor
-    }
-
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -68,10 +62,10 @@ public class HomeFragment extends Fragment {
         adapter = new CoursesAdapter(getParentFragmentManager(), new CoursesAdapter.OnCourseItemClickListener() {
             @Override
             public void onCourseItemClick(Course course) {
-                FlashcardFragment flashcardFragment = FlashcardFragment.newInstance(course.getId());
+                ModeFragment modeFragment = ModeFragment.newInstance(course.getId());
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.frame_layout, flashcardFragment);
+                transaction.replace(R.id.frame_layout, modeFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }

@@ -30,7 +30,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class PracticeFragment extends Fragment {
+public class QuizFragment extends Fragment {
 
     private String course;
     private DatabaseService databaseService;
@@ -44,8 +44,16 @@ public class PracticeFragment extends Fragment {
     private int totalQuestions = 0;
     private int score = 0;
 
-    public PracticeFragment() {
+    public QuizFragment() {
         // Required empty public constructor
+    }
+
+    public static QuizFragment newInstance(String courseId) {
+        QuizFragment fragment = new QuizFragment();
+        Bundle args = new Bundle();
+        args.putString("COURSE_KEY", courseId);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -59,6 +67,7 @@ public class PracticeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_practice, container, false);
+
         tvQuestion = view.findViewById(R.id.tvQuestion);
         optionButtons = new Button[] {
                 view.findViewById(R.id.btnOption1),
