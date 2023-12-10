@@ -36,10 +36,12 @@ public class FlashcardAdapter extends RecyclerView.Adapter<FlashcardAdapter.Flas
         holder.tvWordFront.setText(word.getEnglish());
         holder.tvMeaningFront.setText(word.getMeaning());
         holder.tvPronounceFront.setText(word.getPronounce());
+        holder.tvWordNumberFront.setText(String.valueOf(position + 1) + "/" + words.size());
 
         holder.tvWordBack.setText(word.getEnglish());
         holder.tvMeaningBack.setText(word.getMeaning());
         holder.tvPronounceBack.setText(word.getPronounce());
+        holder.tvWordNumberBack.setText(String.valueOf(position + 1) + "/" + words.size());
 
         holder.btnPlayAudioFront.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +71,7 @@ public class FlashcardAdapter extends RecyclerView.Adapter<FlashcardAdapter.Flas
     }
 
     public class FlashcardViewHolder extends RecyclerView.ViewHolder {
-        TextView tvWordFront, tvMeaningFront, tvPronounceFront, tvWordBack, tvMeaningBack, tvPronounceBack;
+        TextView tvWordFront, tvMeaningFront, tvPronounceFront, tvWordBack, tvMeaningBack, tvPronounceBack, tvWordNumberFront, tvWordNumberBack;
         Button btnPlayAudioBack, btnPlayAudioFront;
         public FlashcardViewHolder(View itemView) {
             super(itemView);
@@ -78,11 +80,13 @@ public class FlashcardAdapter extends RecyclerView.Adapter<FlashcardAdapter.Flas
             tvMeaningFront = itemView.findViewById(R.id.tvMeaningFront);
             tvPronounceFront = itemView.findViewById(R.id.tvPronounceFront);
             btnPlayAudioFront = itemView.findViewById(R.id.btnPlayAudioFront);
+            tvWordNumberFront = itemView.findViewById(R.id.tvWordNumberFront);
 
             tvWordBack = itemView.findViewById(R.id.tvWordBack);
             tvMeaningBack = itemView.findViewById(R.id.tvMeaningBack);
             tvPronounceBack = itemView.findViewById(R.id.tvPronounceBack);
             btnPlayAudioBack = itemView.findViewById(R.id.btnPlayAudioBack);
+            tvWordNumberBack = itemView.findViewById(R.id.tvWordNumberBack);
         }
     }
 
