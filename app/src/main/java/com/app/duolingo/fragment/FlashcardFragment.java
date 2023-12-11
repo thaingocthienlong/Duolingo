@@ -147,10 +147,10 @@ public class FlashcardFragment extends Fragment {
             public void onClick(View v) {
                 if (isAutoPlayActive) {
                     stopAutoPlay();
-                    btnAutoPlay.setImageResource(R.drawable.baseline_play_arrow_24); // Replace with your play icon resource
+                    btnAutoPlay.setImageResource(R.drawable.baseline_play_arrow_24);
                 } else {
                     startAutoPlay();
-                    btnAutoPlay.setImageResource(R.drawable.baseline_pause_24); // Replace with your stop icon resource
+                    btnAutoPlay.setImageResource(R.drawable.baseline_pause_24);
                 }
                 isAutoPlayActive = !isAutoPlayActive;
             }
