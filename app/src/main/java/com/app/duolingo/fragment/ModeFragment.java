@@ -76,11 +76,12 @@ public class ModeFragment extends Fragment {
         wordSolveCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putInt("mode", 2);
-                intent.putExtras(bundle);
-                startActivity(intent);
+                WordSolveFragment wordSolveFragment = WordSolveFragment.newInstance(courseId);
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.frame_layout, wordSolveFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 

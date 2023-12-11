@@ -93,23 +93,23 @@ public class FlashcardAdapter extends RecyclerView.Adapter<FlashcardAdapter.Flas
     private void playAudio(String audioUrl) {
         MediaPlayer mediaPlayer = new MediaPlayer();
         try {
-            mediaPlayer.setDataSource(audioUrl); // Set the audio URL
-            mediaPlayer.prepareAsync(); // Prepare the MediaPlayer asynchronously
+            mediaPlayer.setDataSource(audioUrl);
+            mediaPlayer.prepareAsync();
 
             mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
-                    mp.start(); // Start playback when media player is ready
+                    mp.start();
                 }
             });
         } catch (IOException e) {
-            e.printStackTrace(); // Handle exceptions
+            e.printStackTrace();
         }
 
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                mp.release(); // Release the MediaPlayer when playback is complete
+                mp.release();
             }
         });
     }
